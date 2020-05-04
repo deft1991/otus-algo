@@ -2,11 +2,6 @@ package com.deft.otus.homework1;
 
 import com.deft.otus.util.HomeWorkFileUtil;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /*
  * Created by sgolitsyn on 4/29/20
  */
@@ -24,49 +19,30 @@ public class SecondTask {
             }
             String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
 
-            int countHappyTickets = getCountHappyTickets(Integer.valueOf(inTest));
-
-            System.out.println(countHappyTickets == Integer.parseInt(outTest));
-            numberOfTest ++;
+            long countHappyTickets = new SecondTask().numberOfHappy(Integer.parseInt(inTest));
+            System.out.println(countHappyTickets);
+            System.out.println(countHappyTickets == Long.parseLong(outTest));
+            numberOfTest++;
         }
     }
 
-    /**
-     * 1 - 10 --> 00, 11, 22 ...
-     * 2 - 670 -> 1234, 2222, 3333, 1221, 2112, 2121, ...
-     *
-     * @param digits
-     */
-    private static int getCountHappyTickets(Integer digits) {
-        int count = 1; // 00
-        int end = 1;
-        for (int i = 0; i < 2 * digits; i++) {
-            end *= 10;
+    private long numOfCombRec(int numCount, int maxNum, int summ) {
+        if (numCount == 1) {
+            return (summ <= maxNum ? 1 : 0);
+        } else {
+            int count = 0;
+            for (int i = 0; i <= Math.min(summ, maxNum); ++i) {
+                count += numOfCombRec(numCount - 1, maxNum, summ - i);
+            }
+            return count;
         }
+    }
 
-        int start = end / 10 + 1;
-        Map<Character, Integer> hashMap = new HashMap<>();
-        for (; start < end; start++) {
-            char[] chars = String.valueOf(start).toCharArray();
-
-            for (int j = 0; j < chars.length / 2; j++) {
-                hashMap.put(chars[j], hashMap.getOrDefault(chars[j], 0) + 1);
-            }
-
-            for (int j = chars.length / 2; j < chars.length; j++) {
-                hashMap.put(chars[j], hashMap.getOrDefault(chars[j], 0) - 1);
-            }
-
-
-            List<Integer> collect = hashMap
-                    .values()
-                    .stream()
-                    .filter(value -> value != 0)
-                    .collect(Collectors.toList());
-            if (collect.size() == 0) {
-                count++;
-            }
-            hashMap.clear();
+    public long numberOfHappy(int numCount) {
+        long count = 0;
+        for (int summ = 0; summ <= 9 * numCount; ++summ) {
+            long f = numOfCombRec(numCount, 9, summ);
+            count += f * f;
         }
         return count;
     }
