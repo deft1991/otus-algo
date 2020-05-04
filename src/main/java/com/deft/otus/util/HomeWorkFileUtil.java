@@ -39,7 +39,7 @@ public class HomeWorkFileUtil {
         outputWriter = new BufferedWriter(new FileWriter(pathStr));
         for (int i = 0; i < matrix.length; i++) {
             // Maybe:
-            outputWriter.write(Arrays.toString(matrix[i]) +"");
+            outputWriter.write(Arrays.toString(matrix[i]) + "");
             outputWriter.write("\n");
         }
         outputWriter.flush();
@@ -63,5 +63,20 @@ public class HomeWorkFileUtil {
             numberOfTest++;
         }
     }
+
+    public String readIn(String pathStr, int numberOfTest) {
+        return readFile(pathStr, numberOfTest, "in");
+    }
+
+    public String readOut(String pathStr, int numberOfTest) {
+        return readFile(pathStr, numberOfTest, "out");
+    }
+
+    public String readFile(String pathStr, int numberOfTest, String ending) {
+        String fileNameIn = "test." + numberOfTest + "." + ending;
+        return this.readTestFile(pathStr + fileNameIn);
+    }
+
+
 }
 
