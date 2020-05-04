@@ -19,19 +19,20 @@ public class ThirdTask {
         new ThirdTask().castSpell(thirdSpell(25), 2);
         new ThirdTask().castSpell(fourthSpell(25), 3);
         new ThirdTask().fifthSpell();
-        new ThirdTask().castSpell(sixSpell(25), 5);
+        new ThirdTask().castSpell(sixSpell(), 5);
         new ThirdTask().castSpell(sevenSpell(25), 6);
-        new ThirdTask().castSpell(eightSpell(25), 7);
+        new ThirdTask().castSpell(eightSpell(), 7);
     }
 
 
-    private void castSpell(BiFunction<Integer, Integer, String> biFunction, int spelNum) throws IOException {
+    private void castSpell(BiFunction<Integer, Integer, Boolean> biFunction, int spelNum) throws IOException {
         String fileNameIn = "test." + spelNum + ".in";
         HomeWorkFileUtil homeWorkFileUtil = new HomeWorkFileUtil();
         String[][] matrix = new String[25][25];
         for (int i = 0; i < 25; i++) {
             for (int j = 0; j < 25; j++) {
-                matrix[i][j] = biFunction.apply(i, j);
+                String simbol = biFunction.apply(i, j) ? "#" : ".";
+                matrix[i][j] = simbol;
             }
         }
         homeWorkFileUtil.writeFileMatrix(FILE_PATH + fileNameIn, matrix);
@@ -62,78 +63,38 @@ public class ThirdTask {
         homeWorkFileUtil.writeFileMatrix(FILE_PATH + fileNameIn, matrix);
     }
 
-    public static BiFunction<Integer, Integer, String> firstSpell() {
-        return (i, j) -> {
-            if (i < j) {
-                return "#";
-            } else {
-                return ".";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> firstSpell() {
+        return (i, j) -> i < j;
     }
 
-    public static BiFunction<Integer, Integer, String> secondSpell() {
-        return (i, j) -> {
-            if (i.equals(j)) {
-                return "#";
-            } else {
-                return ".";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> secondSpell() {
+        return Integer::equals;
     }
 
-    public static BiFunction<Integer, Integer, String> thirdSpell(int length) {
-        return (i, j) -> {
-            if (j == length - i - 1) {
-                return "#";
-            } else {
-                return ".";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> thirdSpell(int length) {
+        return (i, j) -> j == length - i - 1;
     }
 
-    public static BiFunction<Integer, Integer, String> fourthSpell(int length) {
+    public static BiFunction<Integer, Integer, Boolean> fourthSpell(int length) {
         return (i, j) -> {
             if (i < 6 || j < 6) {
-                return "#";
+                return true;
             } else {
-                if (j > length + 4 - i) {
-                    return ".";
-                } else {
-                    return "#";
-                }
+                return j <= length + 4 - i;
             }
         };
     }
 
-    public static BiFunction<Integer, Integer, String> sixSpell(int length) {
-        return (i, j) -> {
-            if (i < 10 || j < 10) {
-                return "#";
-            } else {
-                return ".";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> sixSpell() {
+        return (i, j) -> i < 10 || j < 10;
     }
 
-    public static BiFunction<Integer, Integer, String> sevenSpell(int length) {
-        return (i, j) -> {
-            if (i < length - 9 || j < length - 9) {
-                return ".";
-            } else {
-                return "#";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> sevenSpell(int length) {
+        return (i, j) -> !(i < length - 9 || j < length - 9);
     }
 
-    public static BiFunction<Integer, Integer, String> eightSpell(int length) {
-        return (i, j) -> {
-            if (i == 0 || j == 0) {
-                return "#";
-            } else {
-                return ".";
-            }
-        };
+    public static BiFunction<Integer, Integer, Boolean> eightSpell() {
+        return (i, j) -> i == 0 || j == 0;
     }
 
 }
