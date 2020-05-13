@@ -17,7 +17,9 @@ public class FibAlgo {
         int numberOfTest = 0;
 //        firstRound(homeWorkFileUtil, fibAlgo, numberOfTest);
 //        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        secondRound(homeWorkFileUtil, fibAlgo, numberOfTest);
+//        secondRound(homeWorkFileUtil, fibAlgo, numberOfTest);
+//        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+//        thirdRound(homeWorkFileUtil, fibAlgo, numberOfTest);
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         thirdRound(homeWorkFileUtil, fibAlgo, numberOfTest);
     }
@@ -70,6 +72,22 @@ public class FibAlgo {
         }
     }
 
+    private static void fourRound(HomeWorkFileUtil homeWorkFileUtil, FibAlgo fibAlgo, int numberOfTest) {
+        while (true) {
+            List<String> stringsIn = homeWorkFileUtil.readIn(FILE_PATH, numberOfTest);
+            if ("File not found".equals(stringsIn.get(0))) {
+                break;
+            }
+            String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
+            long start = System.currentTimeMillis();
+            BigDecimal NOD = fibAlgo.fibonacciMatrix(Long.parseLong(stringsIn.get(0)));
+            long end = System.currentTimeMillis();
+            System.out.println(end - start);
+            System.out.println(NOD.compareTo(new BigDecimal(outTest)) == 0);
+            numberOfTest++;
+        }
+    }
+
     public BigDecimal fibonacciRec(long n) {
         if (n == 0)
             return new BigDecimal(0);
@@ -81,7 +99,7 @@ public class FibAlgo {
 
     // 0 1 1 2 3 5 8 13 21
     public BigDecimal fibonacciForI(long n) {
-        if(n == 0 || n == 1) {
+        if (n == 0 || n == 1) {
             return new BigDecimal(n);
         } else {
             int previousNumber = 0;
@@ -100,8 +118,33 @@ public class FibAlgo {
     // 0 1 1 2 3 5 8 13 21
     public BigDecimal fibonacciGold(long n) {
         double squareRootOf5 = Math.sqrt(5);
-        double phi = (1 + squareRootOf5)/2;
-        int nthTerm = (int) ((Math.pow(phi, n) - Math.pow(-phi, -n))/squareRootOf5);
+        double phi = (1 + squareRootOf5) / 2;
+        int nthTerm = (int) ((Math.pow(phi, n) - Math.pow(-phi, -n)) / squareRootOf5);
         return new BigDecimal(nthTerm);
+    }
+
+    // 0 1 1 2 3 5 8 13 21
+    public BigDecimal fibonacciMatrix(long n) {
+        int F[][] = new int[][]{{1,1},{1,0}};
+        int M[][] = new int[][]{{1,1},{1,0}};
+
+        for (int i = 2; i <= n ; i++) {
+            multiply(F, M);
+        }
+
+        return new BigDecimal(F[0][0]);
+    }
+
+    static void multiply(int F[][], int M[][])
+    {
+        int x =  F[0][0]*M[0][0] + F[0][1]*M[1][0];
+        int y =  F[0][0]*M[0][1] + F[0][1]*M[1][1];
+        int z =  F[1][0]*M[0][0] + F[1][1]*M[1][0];
+        int w =  F[1][0]*M[0][1] + F[1][1]*M[1][1];
+
+        F[0][0] = x;
+        F[0][1] = y;
+        F[1][0] = z;
+        F[1][1] = w;
     }
 }
