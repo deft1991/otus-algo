@@ -23,10 +23,11 @@ public class King {
     // 0 1 1 2 3 5 8 13 21
     private static Function<Integer, List<String>> kingSteps() {
         return (position) -> {
-            ArrayList<String> resultList = new ArrayList<>();
             if (position == 63) {
+                ArrayList<String> resultList = new ArrayList<>();
                 resultList.add("4665729213955833856");
                 resultList.add(String.valueOf(3));
+                return resultList;
             }
             long figurePosition = 0b1L << position;
             long kL = figurePosition & 0xFEFEFEFEFEFEFEFEL;
