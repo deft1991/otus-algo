@@ -92,8 +92,12 @@ public class HomeWorkFileUtil {
         return readFile(pathStr, numberOfTest, "in");
     }
 
-    public String readOut(String pathStr, int numberOfTest) {
+    public String readOutLine(String pathStr, int numberOfTest) {
         return readFileLine(pathStr, numberOfTest, "out");
+    }
+
+    public List<String> readOut(String pathStr, int numberOfTest) {
+        return readFile(pathStr, numberOfTest, "out");
     }
 
     public String readFileLine(String pathStr, int numberOfTest, String ending) {
