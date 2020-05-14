@@ -13,7 +13,7 @@ public class SecondTask {
         HomeWorkFileUtil homeWorkFileUtil = new HomeWorkFileUtil();
         int numberOfTest = 0;
         while (true) {
-            String inTest = homeWorkFileUtil.readIn(FILE_PATH, numberOfTest);
+            String inTest = homeWorkFileUtil.readInLine(FILE_PATH, numberOfTest);
             if ("File not found".equals(inTest)) {
                 break;
             }
