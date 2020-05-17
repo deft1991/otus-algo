@@ -25,21 +25,22 @@ public class Horse {
         return (position) -> {
 
 
-            long figurePosition = 0b1 << position;
+            long figurePosition = 1L << 36;
 
-            long nA = 0xFeFeFeFeFeFeFeFeL;
-            long nAB = 0xFcFcFcFcFcFcFcFcL;
-            long nH = 0x7f7f7f7f7f7f7f7fL;
-            long nGH = 0x3f3f3f3f3f3f3f3fL;
+            long nA = 0xFEFEFEFEFEFEFEFEL;
+            long nAB = 0xFCFCFCFCFCFCFCFCL;
+            long nH = 0x7F7F7F7F7F7F7F7FL;
+            long nGH = 0x3F3F3F3F3F3F3F3FL;
 
             BigDecimal mask = new BigDecimal(Long.toBinaryString(
-                    nGH & (figurePosition << 6 | figurePosition >> 10) // на b5 и b3
+                           nGH & (figurePosition << 6 | figurePosition >> 10) // на b5 и b3
                             | nH & (figurePosition << 15 | figurePosition >> 17) // на c6 и c2
                             | nA & (figurePosition << 17 | figurePosition >> 15) // на e6 и e2
                             | nAB & (figurePosition << 10 | figurePosition >> 6) // на f5 и f3;
             ));
-
             return Starter.getResultList(mask);
         };
     }
+
+
 }
