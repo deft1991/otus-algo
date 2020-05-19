@@ -17,7 +17,7 @@ public class SecondTask {
             if ("File not found".equals(inTest)) {
                 break;
             }
-            String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
+            String outTest = homeWorkFileUtil.readOutLine(FILE_PATH, numberOfTest);
 
             long countHappyTickets = new SecondTask().numberOfHappy(Integer.parseInt(inTest));
             System.out.println(countHappyTickets);

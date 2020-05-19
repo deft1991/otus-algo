@@ -30,7 +30,7 @@ public class NodAlgo {
             if ("File not found".equals(stringsIn.get(0))) {
                 break;
             }
-            String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
+            String outTest = homeWorkFileUtil.readOutLine(FILE_PATH, numberOfTest);
             BigDecimal NOD = nodAlgo.NODSubtraction2(new BigDecimal(stringsIn.get(0)), new BigDecimal(stringsIn.get(1)));
             System.out.println(NOD.compareTo(new BigDecimal(outTest)) == 0);
             numberOfTest++;
@@ -43,7 +43,7 @@ public class NodAlgo {
             if ("File not found".equals(stringsIn.get(0))) {
                 break;
             }
-            String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
+            String outTest = homeWorkFileUtil.readOutLine(FILE_PATH, numberOfTest);
             BigDecimal NOD = nodAlgo.NODRemainder(new BigDecimal(stringsIn.get(0)), new BigDecimal(stringsIn.get(1)));
             System.out.println(NOD.compareTo(new BigDecimal(outTest)) == 0);
             numberOfTest++;

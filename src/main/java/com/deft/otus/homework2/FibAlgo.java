@@ -14,24 +14,23 @@ public class FibAlgo {
 
     public static void main(String[] args) {
         HomeWorkFileUtil homeWorkFileUtil = new HomeWorkFileUtil();
-        FibAlgo fibAlgo = new FibAlgo();
         int numberOfTest = 0;
-//        startAlgo(homeWorkFileUtil, fibAlgo, numberOfTest, fibonacciRec());
+//        startAlgo(homeWorkFileUtil, numberOfTest, fibonacciRec());
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        startAlgo(homeWorkFileUtil, fibAlgo, numberOfTest, fibonacciForI());
+        startAlgo(homeWorkFileUtil, numberOfTest, fibonacciForI());
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        startAlgo(homeWorkFileUtil, fibAlgo, numberOfTest, fibonacciGold());
+        startAlgo(homeWorkFileUtil, numberOfTest, fibonacciGold());
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        startAlgo(homeWorkFileUtil, fibAlgo, numberOfTest, fibonacciMatrix());
+        startAlgo(homeWorkFileUtil, numberOfTest, fibonacciMatrix());
     }
 
-    private static void startAlgo(HomeWorkFileUtil homeWorkFileUtil, FibAlgo fibAlgo, int numberOfTest, Function<Long, BigDecimal> fibonacci) {
+    private static void startAlgo(HomeWorkFileUtil homeWorkFileUtil, int numberOfTest, Function<Long, BigDecimal> fibonacci) {
         while (true) {
             List<String> stringsIn = homeWorkFileUtil.readIn(FILE_PATH, numberOfTest);
             if ("File not found".equals(stringsIn.get(0))) {
                 break;
             }
-            String outTest = homeWorkFileUtil.readOut(FILE_PATH, numberOfTest);
+            String outTest = homeWorkFileUtil.readOutLine(FILE_PATH, numberOfTest);
             long start = System.currentTimeMillis();
             BigDecimal NOD = fibonacci.apply(Long.valueOf(stringsIn.get(0)));
             long end = System.currentTimeMillis();
