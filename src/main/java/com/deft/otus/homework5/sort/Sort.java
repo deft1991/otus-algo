@@ -11,6 +11,6 @@ public class Sort {
         long start = System.currentTimeMillis();
         sortAlgorithm.accept(array);
         long end = System.currentTimeMillis();
-        System.out.printf("Execution time of %s is %d \n", algorithmName, end - start);
+        System.out.printf("Execution time of %s is %d. With array length %d \n", algorithmName, end - start, array.length);
     }
 }
