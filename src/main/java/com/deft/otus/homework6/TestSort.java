@@ -16,20 +16,20 @@ public class TestSort {
     public static final String FILE_PATH_HUGEFILE = "./testFiles/hugefile/";
 
     public static void main(String[] args) {
-//        ISort mergeSort = new MergeSort();
-//        start(mergeSort.sort(), "hugefile with" + " merge sort", FILE_PATH_HUGEFILE);
-//        System.out.println("-=-=-=-=-=-=-=-=-=-");
-//
-//        ISort quickSort = new QuickSort();
-//        startWithChunks(quickSort.sort(), mergeSort.sort(), "hugefile with" + " quick and merge sort", FILE_PATH_HUGEFILE);
-//        System.out.println("-=-=-=-=-=-=-=-=-=-");
+        ISort mergeSort = new MergeSort();
+        start(mergeSort.sort(), "hugefile with" + " merge sort", FILE_PATH_HUGEFILE);
+        System.out.println("-=-=-=-=-=-=-=-=-=-");
+
+        ISort quickSort = new QuickSort();
+        startWithChunks(quickSort.sort(), mergeSort.sort(), "hugefile with" + " quick and merge sort", FILE_PATH_HUGEFILE);
+        System.out.println("-=-=-=-=-=-=-=-=-=-");
 
         ISort radixSort = new RadixSort();
         start(radixSort.sort(), "hugefile with" + " radix sort", FILE_PATH_HUGEFILE);
         System.out.println("-=-=-=-=-=-=-=-=-=-");
 
         ISort countingSort = new CountingSort();
-        start(radixSort.sort(), "hugefile with" + " counting sort", FILE_PATH_HUGEFILE);
+        start(countingSort.sort(), "hugefile with" + " counting sort", FILE_PATH_HUGEFILE);
         System.out.println("-=-=-=-=-=-=-=-=-=-");
 
     }

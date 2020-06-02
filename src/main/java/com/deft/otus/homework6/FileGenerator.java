@@ -10,7 +10,7 @@ public class FileGenerator {
     public static void main(String[] args) throws IOException {
         FileWriter fw = new FileWriter("testFiles/hugefile/test.0.in");
 
-        for (int i = 1; i < 1e7; i++) {
+        for (int i = 1; i < 1e9; i++) {
             int random = (int) (Math.random() * 100000);
             fw.write(String.valueOf(random));
             fw.write(" ");
