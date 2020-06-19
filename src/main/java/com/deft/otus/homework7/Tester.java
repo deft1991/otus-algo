@@ -4,6 +4,8 @@ import com.deft.otus.homework7.model.Person;
 import com.deft.otus.homework7.tree.BaseTree;
 import com.deft.otus.homework7.tree.BinarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 /*
@@ -11,36 +13,53 @@ import java.util.stream.Stream;
  */
 public class Tester {
 
-    public static void main(String[] args) {
-        test2();
-
-    }
-
-    private static void test1() {
-        Person p1 = new Person(1);
-        Person p3 = new Person(3);
-        Person p2 = new Person(2);
-        Person p6 = new Person(6);
-        Person p5 = new Person(5);
-        Person p8 = new Person(8);
-        Person p7 = new Person(7);
-        Person p9 = new Person(9);
-        Person p10 = new Person(10);
-        Person p4 = new Person(4);
+    public static BaseTree test1FillRandom() {
+        long start = System.currentTimeMillis();
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            double val = Math.random() * 10000 + 1;
+            persons.add(new Person((int) val));
+        }
 
         BaseTree<Integer, Person> tree = new BinarySearchTree<>();
-        Stream.of(p1, p3, p2, p6, p5, p8, p7, p9, p10, p4).forEach(tree::insert);
+        persons.forEach(tree::insert);
+        long end = System.currentTimeMillis();
+        System.out.println("Fill time : " + (end - start));
+        return tree;
+    }
 
-        tree.preOrder();
-        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        tree.inOrder();
-        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        tree.postOrder();
-        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        System.out.println(tree.find(10));
-        System.out.println(tree.find(1));
-        System.out.println(tree.find(4));
-        System.out.println(tree.find(50));
+    public static BaseTree test1FillConsequentially() {
+        long start = System.currentTimeMillis();
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            persons.add(new Person(i));
+        }
+
+        BaseTree<Integer, Person> tree = new BinarySearchTree<>();
+        persons.forEach(tree::insert);
+        long end = System.currentTimeMillis();
+        System.out.println("Fill time : " + (end - start));
+        return tree;
+    }
+
+    public static void test1SearchRandom(BaseTree<Integer, Person> tree, int param) {
+        long start = System.currentTimeMillis();
+        for (int i = 1; i < param; i++) {
+            double val = Math.random() * 1000000 + 1;
+            System.out.println(tree.find((int) val));
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Execution time : " + (end - start));
+    }
+
+    public static void test1SearchConsequentially(BaseTree<Integer, Person> tree, int param) {
+        long start = System.currentTimeMillis();
+        for (int i = 1; i < param; i++) {
+            double val = Math.random() * 1000000 + 1;
+            System.out.println(tree.find((int) val));
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Execution time : " + (end - start));
     }
 
 

@@ -48,3 +48,11 @@
    +5 байтов за реализацию АВЛ-дерева с тестированием и выводом
    +5 байтов за реализацию Декартово дерева с тестированием и выводом
 ```
+Fill time : 64, 880
+Execution time : 138, 610
+
+Table with conclusions
+
+| Tree type              | Random fill  | Consequentially fill  | Search in Random | Search in Consequentially |
+| :------------          |:------------:|:---------------------:|:--------------------:|:---------------------:|
+| Binary Tree            |      64      |              880      |        138       |             610           |
