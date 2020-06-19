@@ -69,7 +69,7 @@ public class RadixSort implements IntSort, ISort {
     }
 
     // A utility function to get maximum value in arr[]
-    static int getMax(int arr[], int n) {
+    static int getMax(int[] arr, int n) {
         int mx = arr[0];
         for (int i = 1; i < n; i++)
             if (arr[i] > mx)
