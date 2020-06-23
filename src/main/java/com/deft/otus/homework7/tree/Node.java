@@ -7,15 +7,18 @@ public class Node<T extends Comparable<T>, V> implements Key<T> {
 
     private T key;
     private V value;
+    private int height;
     private Node<T, V> left;
     private Node<T, V> right;
 
     public Node() {
+        this.height = 0;
     }
 
     public Node(T key, V value) {
         this.key = key;
         this.value = value;
+        this.height = 0;
     }
 
     public T getKey() {
@@ -48,5 +51,13 @@ public class Node<T extends Comparable<T>, V> implements Key<T> {
 
     public void setRight(Node<T, V> right) {
         this.right = right;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

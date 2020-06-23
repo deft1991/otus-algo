@@ -1,5 +1,6 @@
 package com.deft.otus.homework7;
 
+import com.deft.otus.homework7.AVLTree.AVLTree;
 import com.deft.otus.homework7.model.Person;
 import com.deft.otus.homework7.tree.BaseTree;
 import com.deft.otus.homework7.tree.BinarySearchTree;
@@ -63,7 +64,7 @@ public class Tester {
     }
 
 
-    private static void test2() {
+    static void test2(BaseTree tree) {
         Person p1 = new Person(50);
         Person p3 = new Person(17);
         Person p2 = new Person(76);
@@ -75,7 +76,6 @@ public class Tester {
         Person p10 = new Person(72);
         Person p4 = new Person(12);
         Person p67 = new Person(67);
-        BaseTree<Integer, Person> tree = new BinarySearchTree<>();
         Stream.of(p1, p3, p2, p6, p5, p8, p7, p9, p10, p4, p67).forEach(tree::insert);
         tree.preOrder();
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
@@ -87,6 +87,29 @@ public class Tester {
         tree.delete(17);
         tree.postOrder();
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+
+    }
+
+    static void test3(BaseTree tree) {
+        Person p1 = new Person(11);
+        Person p3 = new Person(4);
+        Person p2 = new Person(20);
+        Person p6 = new Person(9);
+//        Person p5 = new Person(12);
+//        Person p8 = new Person(30);
+        Person p7 = new Person(7);
+        Person p9 = new Person(10);
+        Stream.of(p1, p3, p2, p6,/* p5, p8,*/ p7, p9).forEach(tree::insert);
+        tree.preOrder();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        tree.inOrder();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        tree.postOrder();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        System.out.println("delete");
+//        tree.delete(17);
+//        tree.postOrder();
+//        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
     }
 
