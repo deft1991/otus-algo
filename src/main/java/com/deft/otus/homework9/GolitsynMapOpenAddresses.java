@@ -10,9 +10,10 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
         if (getSize() + 1 >= super.getCapacity() * 0.75) {
             rehash();
         }
-        int idx = getBucketIdx(key);
+        int count = 1;
         HashEntry<K, V> entry = new HashEntry<>(key, value);
         while (true) {
+            int idx = getBucketIdx(key, count);
             HashEntry<K, V> oldEntry = getBuckets()[idx];
             if (oldEntry != null) {
                 // if keys equals swap values
@@ -23,9 +24,7 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
                     getBuckets()[idx] = entry;
                     return null;
                 } else {
-
-                    idx = (idx + 1) % getCapacity();
-                    // todo can add other variant
+                    count++;
                 }
             } else {
                 getBuckets()[idx] = entry;
@@ -36,9 +35,10 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
 
     @Override
     public V get(Object key) {
-        int idx = getBucketIdx(key);
+        int count = 1;
         int remIdx = -1;
         while (true) {
+            int idx = getBucketIdx(key, count);
             HashEntry<K, V> entry = getBuckets()[idx];
             if (entry == null) {
                 return null;
@@ -51,7 +51,7 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
                     }
                     return entry.getValue();
                 } else {
-                    idx++;
+                    count++;
                 }
             }
 
@@ -74,9 +74,10 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
 
     @Override
     public V remove(Object key) {
-        int idx = getBucketIdx(key);
+        int count = 1;
 
         while (true) {
+            int idx = getBucketIdx(key, count);
             HashEntry<K, V> entry = getBuckets()[idx];
             if (entry == null) {
                 return null;
@@ -85,12 +86,13 @@ public class GolitsynMapOpenAddresses<K, V> extends GolitsynsMap<K, V> {
                 entry.setRemoved(true);
                 return entry.getValue();
             } else {
-                idx++;
+                count++;
             }
         }
     }
 
-    protected int getBucketIdx(Object key) {
-        return key.hashCode() % super.getCapacity();
+    //    hash(k)=(hash′(k)+(i+i2) / 2)modM , где c1=c2=1/2,M=2k
+    protected int getBucketIdx(Object key, int i) {
+        return (int) ((key.hashCode() + (i + Math.pow(i, 2)) / 2) % super.getCapacity());
     }
 }
