@@ -9,11 +9,13 @@ public class HashEntry<K, V> {
    private final K key;
    private V value;
    private HashEntry<K, V> next;
+   private boolean isRemoved;
 
 
     public HashEntry(K key, V value) {
         this.key = key;
         this.value = value;
+        this.isRemoved = false;
     }
 
     public void setValue(V value) {
@@ -34,5 +36,13 @@ public class HashEntry<K, V> {
 
     public V getValue() {
         return value;
+    }
+
+    public boolean isRemoved() {
+        return isRemoved;
+    }
+
+    public void setRemoved(boolean removed) {
+        isRemoved = removed;
     }
 }

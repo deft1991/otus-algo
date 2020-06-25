@@ -141,4 +141,24 @@ public class GolitsynsMap<K, V> implements Map<K, V> {
     public Set<Entry<K, V>> entrySet() {
         return null;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public HashEntry<K, V>[] getBuckets() {
+        return buckets;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
