@@ -38,8 +38,12 @@ public class Tester {
 
 
     public static void main(String[] args) {
-        PrimaAlgo primaAlgo = new PrimaAlgo(adjacencyVectorEdgeWithWeight);
-        Edge[] spanningTree = primaAlgo.getSpanningTree(0);
+        SpanningTree primaAlgo = new PrimaAlgo(adjacencyVectorEdgeWithWeight);
+        Edge[] spanningTreeRez = primaAlgo.getSpanningTree();
+        System.out.println();
+
+        SpanningTree kraskalAlgo = new KraskalAlgo(adjacencyVectorEdgeWithWeight);
+        spanningTreeRez = kraskalAlgo.getSpanningTree();
         System.out.println();
     }
 }

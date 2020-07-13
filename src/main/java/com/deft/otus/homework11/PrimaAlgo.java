@@ -6,7 +6,7 @@ import java.util.List;
 /*
  * Created by sgolitsyn on 7/13/20
  */
-public class PrimaAlgo {
+public class PrimaAlgo implements SpanningTree {
     private final Edge[][] adjacencyVector;
     private final List<Edge> spanningTree;
     private final boolean[] usedVertex;
@@ -17,6 +17,11 @@ public class PrimaAlgo {
         this.vertexCount = adjacencyVector.length;
         usedVertex = new boolean[vertexCount];
         spanningTree = new ArrayList<>();
+    }
+
+    @Override
+    public Edge[] getSpanningTree() {
+        return getSpanningTree(0);
     }
 
     public Edge[] getSpanningTree(int idx) {

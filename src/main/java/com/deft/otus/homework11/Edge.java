@@ -4,9 +4,9 @@ package com.deft.otus.homework11;
  * Created by sgolitsyn on 7/13/20
  */
 public class Edge {
-    int vertexOne;
-    int vertexTwo;
-    int weight;
+    public int vertexOne;
+    public int vertexTwo;
+    public int weight;
 //
 //    public Edge(int vertexOne, int vertexTwo) {
 //        this.vertexOne = vertexOne;
