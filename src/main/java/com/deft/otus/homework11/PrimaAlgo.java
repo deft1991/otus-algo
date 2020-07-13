@@ -21,7 +21,7 @@ public class PrimaAlgo {
 
     public Edge[] getSpanningTree(int idx) {
         usedVertex[idx] = true;
-        while (spanningTree.size() < vertexCount) {
+        while (spanningTree.size() < vertexCount - 1) {
             Edge minUnusedWeightEdge = getMinUnusedWeightEdge();
             if (minUnusedWeightEdge.vertexOne != minUnusedWeightEdge.vertexTwo) {
                 spanningTree.add(minUnusedWeightEdge);
