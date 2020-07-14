@@ -30,28 +30,26 @@ public class BoruvkaAlgo implements SpanningTree {
         List<Edge> spanningTree = new ArrayList<>();
 //        для v из V
         for (int i = 0; i < adjacencyVector.length; i++) {
-            Edge[] v = adjacencyVector[i];
 //        если родитель[v] != v0 то
-//            if (getParent(i) == i) {
-//        m = МинимальноеРеброНаружу(v)
-                Edge m = getMinWeight(v);
+                int parent = getParent(i);
+                Edge[] v = adjacencyVector[parent];
+                Edge m = getMinWeight(v, i);
                 m.vertexOne = i;
 //        остов.добавить(m)
                 spanningTree.add(m);
 //        Объединить(v, m.исходящее)
                 union(m.vertexOne, m.vertexTwo);
-//            }
         }
 
         return spanningTree.toArray(new Edge[0]);
     }
 
-    private Edge getMinWeight(Edge[] v) {
+    private Edge getMinWeight(Edge[] v, int fromIdx) {
         int minVal = Integer.MAX_VALUE;
         int minIdxI = 0;
         for (int i = 0; i < v.length; i++) {
             if (v[i] != null) {
-                if (v[i].weight < minVal && getParent(v[i].vertexOne) != getParent(v[i].vertexTwo)) {
+                if (v[i].weight < minVal && getParent(fromIdx) != getParent(v[i].vertexTwo)) {
                     minVal = v[i].weight;
                     minIdxI = i;
                 }

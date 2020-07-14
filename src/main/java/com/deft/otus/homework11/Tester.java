@@ -33,21 +33,21 @@ public class Tester {
             {new Edge(0, 5), new Edge(1, 9), new Edge(4, 15), new Edge(5, 6), null},
             {new Edge(1, 7), new Edge(2, 5), new Edge(3, 15), new Edge(5, 8), new Edge(6, 9)},
             {new Edge(3, 6), new Edge(4, 8), new Edge(6, 11), null, null},
-            {new Edge(4, 11), new Edge(5, 9), null, null}
+            {new Edge(4, 9), new Edge(5, 11), null, null}
     };
 
 
     public static void main(String[] args) {
-        SpanningTree primaAlgo = new PrimaAlgo(adjacencyVectorEdgeWithWeight);
-        Edge[] spanningTreeRez = primaAlgo.getSpanningTree();
-        System.out.println("-=-=-=-=-=-=");
-
-        SpanningTree kraskalAlgo = new KraskalAlgo(adjacencyVectorEdgeWithWeight);
-        spanningTreeRez = kraskalAlgo.getSpanningTree();
-        System.out.println("-=-=-=-=-=-=-=-=");
+//        SpanningTree primaAlgo = new PrimaAlgo(adjacencyVectorEdgeWithWeight);
+//        Edge[] spanningTreeRez = primaAlgo.getSpanningTree();
+//        System.out.println("-=-=-=-=-=-=");
+//
+//        SpanningTree kraskalAlgo = new KraskalAlgo(adjacencyVectorEdgeWithWeight);
+//        spanningTreeRez = kraskalAlgo.getSpanningTree();
+//        System.out.println("-=-=-=-=-=-=-=-=");
 
         SpanningTree boruvkaAlgo = new BoruvkaAlgo(adjacencyVectorEdgeWithWeight);
-        spanningTreeRez = boruvkaAlgo.getSpanningTree();
+        Edge[] spanningTreeRez = boruvkaAlgo.getSpanningTree();
         System.out.println("-=-=-=-=-=-=-=-=");
     }
 }
