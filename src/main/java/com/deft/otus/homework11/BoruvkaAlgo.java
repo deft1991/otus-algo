@@ -39,6 +39,16 @@ public class BoruvkaAlgo implements SpanningTree {
                 spanningTree.add(m);
 //        Объединить(v, m.исходящее)
                 union(m.vertexOne, m.vertexTwo);
+
+                // todo THIS IS CRUTCH. WHAT CAN I DO WITHOUT IT I DONT KNOW
+            for (int j = 0; j < spanningTree.size(); j++) {
+                Edge edge = spanningTree.get(j);
+                if (edge.vertexTwo == m.vertexOne && edge.weight > m.weight){
+//                    edge.vertexOne = m.vertexTwo;
+//                    edge.weight = m.weight;
+                    spanningTree.remove(j);
+                }
+            }
         }
 
         return spanningTree.toArray(new Edge[0]);
@@ -52,6 +62,7 @@ public class BoruvkaAlgo implements SpanningTree {
                 if (v[i].weight < minVal && getParent(fromIdx) != getParent(v[i].vertexTwo)) {
                     minVal = v[i].weight;
                     minIdxI = i;
+
                 }
             }
         }
