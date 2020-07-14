@@ -59,11 +59,17 @@ public class KraskalAlgo implements SpanningTree {
     private void union(int vertexOne, int vertexTwo) {
         int parentOne = getParent(vertexOne);
         int parentTwo = getParent(vertexTwo);
-        if (vertexOne != vertexTwo) {
+        if (parentOne != parentTwo) {
             vertexes[parentOne] = vertexTwo;
         }
     }
 
+    /**
+     * without recursion
+     * with recursion see {@see KraskalAlgo.class}
+     * @param vertexOne
+     * @return
+     */
     private int getParent(int vertexOne) {
         int idx = vertexOne;
 
