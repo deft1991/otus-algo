@@ -65,6 +65,18 @@ public class HomeWorkFileUtil {
         outputWriter.close();
     }
 
+    public void writeFileList(String pathStr, List<?> list) throws IOException {
+        BufferedWriter outputWriter = null;
+        outputWriter = new BufferedWriter(new FileWriter(pathStr));
+        for (int i = 0; i < list.size(); i++) {
+            // Maybe:
+            outputWriter.write(String.valueOf(list.get(i)));
+            outputWriter.write("\n");
+        }
+        outputWriter.flush();
+        outputWriter.close();
+    }
+
     public void test(String pathStr) {
         int numberOfTest = 0;
 
