@@ -1,5 +1,6 @@
 package com.deft.otus.homework7;
 
+import com.deft.otus.homework7.AVLTree.AVLTree;
 import com.deft.otus.homework7.tree.BaseTree;
 
 /*
@@ -8,10 +9,12 @@ import com.deft.otus.homework7.tree.BaseTree;
 public class Starter {
 
     public static void main(String[] args) {
-        BaseTree baseTree = Tester.test1FillRandom();
-        Tester.test1SearchRandom(baseTree, 2000);
-        baseTree = Tester.test1FillConsequentially();
-        Tester.test1SearchConsequentially(baseTree, 2000);
+//        BaseTree baseTree = Tester.test1FillRandom();
+//        Tester.test1SearchRandom(baseTree, 2000);
+//        baseTree = Tester.test1FillConsequentially();
+//        Tester.test1SearchConsequentially(baseTree, 2000);
 
+        BaseTree avl = new AVLTree();
+        Tester.test3(avl);
     }
 }

@@ -7,7 +7,7 @@ public interface Tree<T extends Comparable<T>, V> {
 
     V find(T key);
 
-    void insert(V obj);
+    Node<T, V> insert(V obj);
 
     /**
      * should look on 3 base cases

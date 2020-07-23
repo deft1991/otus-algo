@@ -5,10 +5,6 @@ package com.deft.otus.homework7.tree;
  */
 public class BinarySearchTree<T extends Comparable<T>, V extends Key<T>> extends BaseTree<T, V> {
 
-    public BinarySearchTree() {
-        super();
-    }
-
     @Override
     public V find(T key) {
         Node<T, V> current = getRoot();
@@ -29,7 +25,7 @@ public class BinarySearchTree<T extends Comparable<T>, V extends Key<T>> extends
     }
 
     @Override
-    public void insert(V obj) {
+    public Node<T, V> insert(V obj) {
         Node<T, V> node = new Node<>(obj.getKey(), obj);
 
         if (getRoot() == null) {
@@ -44,17 +40,18 @@ public class BinarySearchTree<T extends Comparable<T>, V extends Key<T>> extends
                     current = current.getLeft();
                     if (current == null) {
                         parent.setLeft(node);
-                        return;
+                        break;
                     }
                 } else {
                     current = current.getRight();
                     if (current == null) {
                         parent.setRight(node);
-                        return;
+                        break;
                     }
                 }
             }
         }
+        return node;
     }
 
     @Override
