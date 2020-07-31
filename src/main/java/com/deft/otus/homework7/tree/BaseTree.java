@@ -11,7 +11,7 @@ public abstract class BaseTree<T extends Comparable<T>, V extends Key<T>> implem
     public abstract V find(T key);
 
     @Override
-    public abstract void insert(V obj);
+    public abstract Node<T, V> insert(V obj);
 
     @Override
     public abstract void delete(T key);
