@@ -13,11 +13,13 @@ public class Compresser {
 //    public static final String FILE_PATH_READ = "./testFiles/14.compress/for_compress/111-large.txt";
 //    public static final String FILE_WRITE_NAME = "test.111-medium-compressed.txt";
 //    public static final String FILE_WRITE_NAME = "test.111-large-compressed.txt";
-    public static final String FILE_PATH_READ = "./testFiles/14.compress/for_compress/111.txt";
+//    public static final String FILE_PATH_READ = "./testFiles/14.compress/for_compress/111.txt";
+    public static final String FILE_PATH_READ = "./testFiles/14.compress/for_compress/otus_bot_picture.jpg";
     public static final String FILE_PATH_WRITE = "./testFiles/14.compress/compressed/";
-    public static final String FILE_WRITE_NAME = "test.111-compressed.txt";
+//    public static final String FILE_WRITE_NAME = "test.111-compressed.txt";
+    public static final String FILE_WRITE_NAME = "otus_bot_picture-compressed.jpg";
     public static final String FILE_WRITE_DE_COMPRESS_WRITE = "./testFiles/14.compress/deCompressed/";
-    public static final String FILE_WRITE_DE_COMPRESS_NAME = "test.111-deCompressed.txt";
+    public static final String FILE_WRITE_DE_COMPRESS_NAME = "otus_bot_picture-deCompressed.jpg";
 
     public static void main(String[] args) {
         Compresser compresser = new Compresser();
