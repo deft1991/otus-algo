@@ -1,5 +1,7 @@
 package com.deft.otus.homework14;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 /*
@@ -11,7 +13,6 @@ public class RLEFunction {
 
         testGetCompressLength();
         testRleCompression();
-
 
     }
 
@@ -34,6 +35,11 @@ public class RLEFunction {
             }
             return compress(arrForCompress, compressLength); // compress array
         };
+    }
+
+    public Function<byte[], Byte[]> rleDeCompression() {
+        // compress array
+        return RLEFunction::deCompress;
     }
 
     /**
@@ -76,6 +82,12 @@ public class RLEFunction {
         int writerPos = 0;
         for (int i = 0; i < arrForCompress.length - 1; i++) {
             if (arrForCompress[i] == arrForCompress[i + 1]) {
+                if (duplicateCount >= 125) {
+                    compressedArr[writerPos++] = duplicateCount;
+                    compressedArr[writerPos++] = arrForCompress[i];
+                    duplicateCount = 1;
+                }
+
                 duplicateCount++;
             } else {
                 compressedArr[writerPos++] = duplicateCount;
@@ -86,6 +98,25 @@ public class RLEFunction {
         compressedArr[writerPos++] = duplicateCount;
         compressedArr[writerPos] = arrForCompress[arrForCompress.length - 1];
         return compressedArr;
+    }
+
+    /**
+     * compress array by RLE algorithm
+     *
+     * @param compressedArr - array for de compression
+     * @return compressed array
+     */
+    private static Byte[] deCompress(byte[] compressedArr) {
+        List<Byte> deCompressArr = new ArrayList<>();
+
+        for (int i = 0; i < compressedArr.length - 1; i += 2) {
+            long baseByteCount = compressedArr[i];
+            byte baseByte = compressedArr[i + 1];
+            for (int j = 0; j < baseByteCount; j++) {
+                deCompressArr.add(baseByte);
+            }
+        }
+        return deCompressArr.toArray(new Byte[0]);
     }
 
     /**
@@ -126,6 +157,13 @@ public class RLEFunction {
         for (int i = 0; i < arrForCompress.length - 1; i++) {
             if (arrForCompress[i] == arrForCompress[i + 1]) {
                 duplicateCount++;
+                if (duplicateCount >= 125) {
+                    additionalChars.append(duplicateCount);
+                    additionalChars.append("1");
+                    duplicateCount = 1;
+                }
+
+
             } else {
                 additionalChars.append(duplicateCount);
                 additionalChars.append("1");

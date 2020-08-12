@@ -2,12 +2,13 @@ package com.deft.otus.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,10 +48,29 @@ public class HomeWorkFileUtil {
         }
     }
 
-    public static void writeFile(String pathStr, Object o) {
+    public static void writeFile(String pathStr, byte[] bytes) {
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(pathStr));
-            objectOutputStream.writeObject(o);
+            // Initialize a pointer
+            // in file using OutputStream
+            OutputStream os = new FileOutputStream(new File(pathStr));
+            // Starts writing the bytes in it
+            os.write(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeFile(String pathStr, Byte[] bytes) {
+        byte[] b = new byte[bytes.length];
+        for (int i = 0; i < bytes.length; i++) {
+            b[i] = bytes[i];
+        }
+        try {
+            // Initialize a pointer
+            // in file using OutputStream
+            OutputStream os = new FileOutputStream(new File(pathStr));
+            // Starts writing the bytes in it
+            os.write(b);
         } catch (IOException e) {
             e.printStackTrace();
         }
