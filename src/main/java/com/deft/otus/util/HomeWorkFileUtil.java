@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +47,7 @@ public class HomeWorkFileUtil {
         }
     }
 
-    public void writeFile(String pathStr, Object o) {
+    public static void writeFile(String pathStr, Object o) {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(pathStr));
             objectOutputStream.writeObject(o);
@@ -123,5 +126,14 @@ public class HomeWorkFileUtil {
     }
 
 
+    public static byte[] readFileToByteArray(String pathStr) {
+        Path path = Paths.get(pathStr);
+        try {
+            return Files.readAllBytes(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
