@@ -33,8 +33,9 @@ jobs:
       with:
         name: dist-without-markdown
         path: |
-          dist
+          build/libs/otus-algo*
           !dist/**/*.md
+
     - name: Archive code coverage results
       uses: actions/upload-artifact@v2
       with:
